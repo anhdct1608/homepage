@@ -33,8 +33,9 @@
 
 .container-fluid{
     width: 1600px;
-    height: 2600px;
+    height: auto;
     background-image: url('images/backgroud.jpg');
+    background-color: #ececec;
 }
 
 .header{
@@ -43,6 +44,11 @@
     height: 280px;
     padding: 40px 0 20px 0;
     color: white;
+}
+
+.header ul li a{
+    color: white;
+    text-decoration: none;
 }
 
 .header ul{
@@ -64,6 +70,13 @@
 
 .header ul li:hover{
     background-image: url('images/hover-menu.png');;
+    text-decoration: none;
+    color: #ca6666;
+}
+
+.header ul li a:hover{
+    width: 96px;
+    height: 35px;
     color: #ca6666;
 }
 
@@ -77,6 +90,7 @@
     font-family: SourceSansPro;
 }
 
+
 .slider{
     width: 1200px;
     height: 550px;
@@ -85,9 +99,20 @@
     margin: auto;
 }
 
-.slider image{
-    z-index: 2;
+.slider img{
+    width: 1200px;
+    height: 550px;
+    z-index: 0;
     position: relative;
+}
+
+.slider a:hover{
+    text-decoration: none;
+}
+
+.carousel{
+    width: 1200px;
+    height: 550px;
 }
 
 .slider .caption1{
@@ -226,6 +251,11 @@
     height: 25px;
     font-size: 16px;
     border-bottom: 100px;
+}
+
+.About-Section .row .col .row .col-3 img{
+    width: 72px;
+    height: 72px;
 }
 
 .date{

@@ -6,38 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/style.css">
     <title>Document</title>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="header ">
-            <div class="row">
-                <div class="col-4">
-                    <a href=""><img src="images/logo.png" alt=""></a>
-                </div>
-                <div class="col-8">
-                    <ul>
-                        <li>HOME</li>
-                        <li>ABOUT</li>
-                        <li>PORTFOLIO</li>
-                        <li>SERVICE</li>
-                        <li>BLOG</li>
-                        <li>CONTACT</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-header">
-                We are <span>Wiretree</span>, digital & branding agency based in Jupiter and we would love to turn ideas
-                into beautiful things.
-            </div>
-        </div>
-
+        <?php get_header() ?>
         <div class="slider mt-1">
-            <img src="images/slider.jpg" alt="">
-            <div class="caption1">Risus Dolor Fermentum Aenean Fusce</div>
-            <div class="caption2">Mollis Elit Egestas Euismod Bibendum</div>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <?php $getposts = new WP_query(); $getposts->query('post_status=publish&showposts=1&post_type=slider'); ?>
+            <?php global $wp_query; $wp_query->in_the_loop = true; ?>
+            <?php while ($getposts->have_posts()) : $getposts->the_post(); ?>
+            <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');  ?>
+                <div class="carousel-item active">
+                  <a href=""><img src="<?php echo $featured_img_url ?>" class="d-block w-100" alt="..."></a>
+                </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+            
+            <?php $getposts = new WP_query(); $getposts->query('post_status=publish&showposts=1&post_type=slider&offset=1'); ?>
+            <?php global $wp_query; $wp_query->in_the_loop = true; ?>
+            <?php while ($getposts->have_posts()) : $getposts->the_post(); ?>
+            <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');  ?>
+                <div class="carousel-item">
+                  <a href=""><img src="<?php echo $featured_img_url ?>" class="d-block w-100" alt="..."></a>
+                </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+            
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+           <a href=""><div class="caption1">Risus Dolor Fermentum Aenean Fusce</div></a> 
+           <a href=""><div class="caption2">Mollis Elit Egestas Euismod Bibendum</div></a> 
         </div>
 
         <div class="intro-section">
@@ -57,7 +65,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2">
-                            <img src="images/logis.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/logis.png" alt="">
                         </div>
                         <div class="col-10">
                             <div class="product-title">Logistic
@@ -74,7 +82,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2">
-                            <img src="images/money.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/money.png" alt="">
                         </div>
                         <div class="col-10">
                             <div class="product-title">Money Protection</div>
@@ -89,7 +97,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2">
-                            <img src="images/strate.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/strate.png" alt="">
                         </div>
                         <div class="col-10">
                             <div class="product-title">Strategic Development</div>
@@ -103,7 +111,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2">
-                            <img src="images/market.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/market.png" alt="">
                         </div>
                         <div class="col-10">
                             <div class="product-title">Marketing Management</div>
@@ -123,7 +131,7 @@
                     <div class="border-bottom"></div>
                     <div class="row">
                         <div class="col-3">
-                            <img src="images/latter.jpg" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/home3-slider1.jpg" alt="">
                             <div class="date">21 JAN</div>
                         </div>
                         <div class="col-9">
@@ -135,7 +143,7 @@
                     <div class="border-bottom-full"></div>
                     <div class="row">
                         <div class="col-3">
-                            <img src="images/latter.jpg" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/latter.jpg" alt="">
                             <div class="date">15 JAN</div>
                         </div>
                         <div class="col-9">
@@ -156,7 +164,7 @@
                         consectetur. Nulla vitae elit libero, a pharetra augue.</div>
                     <div class="row">
                         <div class="col-1 mt-2">
-                            <img src="images/icon.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/icon.png" alt="">
                         </div>
                         <div class="col-11 text-About-Section">
                             Donec ullamcorper nulla non metus auctor.
@@ -164,7 +172,7 @@
                     </div>
                     <div class="row">
                         <div class="col-1 mt-2">
-                            <img src="images/icon.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/icon.png" alt="">
                         </div>
                         <div class="col-11 text-About-Section">
                             Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur.
@@ -172,7 +180,7 @@
                     </div>
                     <div class="row">
                         <div class="col-1 mt-2">
-                            <img src="images/icon.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/icon.png" alt="">
                         </div>
                         <div class="col-11 text-About-Section">
                             Praesent commodo cursus magna.
@@ -180,7 +188,7 @@
                     </div>
                     <div class="row">
                         <div class="col-1 mt-2">
-                            <img src="images/icon.png" alt="">
+                            <img src="<?php bloginfo('template_directory') ?>/images/icon.png" alt="">
                         </div>
                         <div class="col-11 text-About-Section">
                             Nullam id dolor id nibh ultricies vehicula ut.
@@ -205,125 +213,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="row">
-                <div class="col">
-                    <div class="title">
-                        Popular Posts
-                    </div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Vivamus sagittis lacus vel augue metus laoreet rutrum dolor auctor.
-                        </div>
-                        <div class="footer-date">
-                            14 Nov, 2012
-                        </div>
-                    </div>
-                    <div class="border-bottom-footer"></div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Scelerisque nisl consectetur et.
-                        </div>
-                        <div class="footer-date">
-                            22 May, 2012
-                        </div>
-                    </div>
-                    <div class="border-bottom-footer"></div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                        </div>
-                        <div class="footer-date">
-                            15 July, 2012
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="title">
-                        Twitter
-                    </div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Praesent commodo cursus magna Morbi leo risus nulla consectetur.
-                        </div>
-                        <div class="footer-date">
-                            21 hours ago
-                        </div>
-                    </div>
-                    <div class="border-bottom-footer"></div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Vestibulum id ligula porta euismod semper. auctor dolor fermentum.
-                        </div>
-                        <div class="footer-date">
-                            2 days ago
-                        </div>
-                    </div>
-                    <div class="border-bottom-footer"></div>
-                    <div class="Popular">
-                        <div class="footer-text">
-                            Donec ullamcorper nulla non metus.
-                        </div>
-                        <div class="footer-date">
-                            3 days ago
-                        </div>
-                    </div>
-                </div>
-                <div class="col about">
-                    <div class="title">A Little About Us</div>
-                    <div class="footer-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus,
-                        nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus,
-                        nullam quis risus eget urna.
-                    </div>
-                    <div class="footer-text">
-                        Donec id elit non porta gravida at eget metus. Nullam quis risus eget urna mollis ornare vel.
-                    </div>
-                </div>
-                <div class="col get-in-touch">
-                    <div class="title">Get in Touch</div>
-                    <div class="footer-text">
-                        Fusce dapibus, tellus commodo, tortor mauris condimentum utellus fermentum, porta sem. Aenean eu
-                        leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="images/diachi.png" alt="">
-                        </div>
-                        <div class="col-9 footer-text">Moonshine Street No: 14/05
-                            Light City, Jupiter
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="images/dienthoai.png" alt="">
-                        </div>
-                        <div class="col-9 footer-text">0247 541 65 87</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <img src="images/email.png" alt="">
-                        </div>
-                        <div class="col-9 footer-text">support@longwave.com</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-section">
-            <div class="row">
-                <div class="col">@ Wiretree. All Rights Reserved.</div>
-                <div class="col contact">
-                    <img src="images/mess.png" alt="">
-                    <img src="images/fli.png" alt="">
-                    <img src="images/pin.png" alt="">
-                    <img src="images/dri.png" alt="">
-                    <img src="images/tw.png" alt="">
-                    <img src="images/fb.png" alt="">
-                    <img src="images/wifi.png" alt="">
-                </div>
-            </div>
-        </div>
+        <?php get_footer() ?>
     </div>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </html>
