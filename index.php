@@ -129,29 +129,23 @@
                 <div class="col">
                     <div class="product-title">Latest Posts</div>
                     <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="<?php bloginfo('template_directory') ?>/images/home3-slider1.jpg" alt="">
-                            <div class="date">21 JAN</div>
+                    <?php if (have_posts()) : ?>
+                    <?php while (have_posts()) : the_post(); ?>
+                    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');  ?>
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="<?php the_permalink() ?>"><img src="<?php echo $featured_img_url ?>" alt=""></a> 
+                                <div class="date"><?php echo get_the_date('d') ?>  <?php echo get_the_date('M') ?></div>
+                            </div>
+                            <div class="col-9">
+                                <a href="<?php the_permalink() ?>"><div class="product-title"><?php the_title() ?></div></a> 
+                                <div class="text-content"><?php $content=get_the_excerpt(); echo substr($content, 0, 140).'...'; ?></div>
+                            </div>
                         </div>
-                        <div class="col-9">
-                            <div class="product-title">Tortor Purus Mollis Quam</div>
-                            <div class="text-content">Praesent commodo cursus magna, Maecenas faucibus mollis interdum.
-                                Praesent commodo cursus magna,</div>
-                        </div>
-                    </div>
-                    <div class="border-bottom-full"></div>
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="<?php bloginfo('template_directory') ?>/images/latter.jpg" alt="">
-                            <div class="date">15 JAN</div>
-                        </div>
-                        <div class="col-9">
-                            <div class="product-title">Fringilla Venenatis Cursus Egestas</div>
-                            <div class="text-content">Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper
-                                nulla non metus auctor fringilla.</div>
-                        </div>
-                    </div>
+                        <div class="border-bottom-full"></div>
+                    <?php endwhile; else : ?>
+                    <p>Không có</p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col">

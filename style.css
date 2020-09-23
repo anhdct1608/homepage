@@ -196,6 +196,7 @@
 }
 
 .text-content{
+    clear: both;
     font-size: 15px;
     font-family: SourceSansPro-Regular;
     color: #616161;
@@ -211,7 +212,6 @@
     font-family: SourceSansPro;
     color: #616161; 
     margin-bottom: 10px;
-    height: 40px;
 }
 
 .Service-Section .row .col .text-content{
@@ -241,14 +241,17 @@
 
 .About-Section{
     width: 1200px;
-    height: 434px;
+    height: auto;
     background-color: #f9f9f9;
     margin: auto;
     padding: 40px 50px 0 50px;
 }
 
+.About-Section a{
+    text-decoration: none;
+}
+
 .About-Section .row .col .row .product-title{
-    height: 25px;
     font-size: 16px;
     border-bottom: 100px;
 }
